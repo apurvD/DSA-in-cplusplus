@@ -163,9 +163,18 @@ void print_permutations(string s, int i=0)
     }
 }
 
-
+void printonetoN(int N)
+{
+    if(N==1)
+    {
+        return;
+    }
+    printonetoN(N-1);
+    cout<<N<<endl;
+}
 int main()
 {
+    printonetoN(10);
     // printNtimes(4);
     // print1toN(4);
     // sumofN_parameterised(10, 0);
