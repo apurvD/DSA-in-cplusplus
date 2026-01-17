@@ -163,18 +163,40 @@ void print_permutations(string s, int i=0)
     }
 }
 
-void printonetoN(int N)
+void fun(int n,int i)
 {
-    if(N==1)
+    //1 to N
+    // int i=N;
+    // if(N==0)
+    // {
+    //     return;
+    // }
+    // fun(N-1);
+    // cout<<i<<endl;
+    // i--;
+
+    //print n to 1
+    // int i=N;
+    // if(N==0)
+    // {
+    //     return;
+    // }   
+    // cout<<i<<endl;
+    // fun(N-1);
+    // i--;
+
+    // print n to 1 but call function first before printing
+    if(n==0)
     {
         return;
     }
-    printonetoN(N-1);
-    cout<<N<<endl;
+    fun(n-1,i+1);
+    cout<<i<<endl;
 }
+
 int main()
 {
-    printonetoN(10);
+    fun(10,1);
     // printNtimes(4);
     // print1toN(4);
     // sumofN_parameterised(10, 0);
