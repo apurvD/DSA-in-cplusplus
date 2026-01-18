@@ -495,6 +495,34 @@ void explainUnorderedMap()
     }
 }
 
+void solve()
+{
+    // Write your code here
+    int arr[] = {1, 2, 3, 4, 5,1,2,3,1,2,1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    unordered_map<int,int> freq;
+    for(auto i: arr)
+    {
+        freq[i]++;
+    }
+    int min_element = -1 , max_element = -1;
+    int min_freq = INT_MAX , max_freq = INT_MIN;
+    for(auto it: freq)
+    {
+        if(it.second >max_freq)
+        {
+            max_freq = it.second;
+            max_element = it.first;
+        }
+        if(it.second < min_freq)
+        {
+            min_freq = it.second;
+            min_element = it.first;
+        }
+    }
+    cout<<"Element with max frequency: "<<max_element<<" , frequency: "<<max_freq<<endl;
+    cout<<"Element with min frequency: "<<min_element<<" , frequency: "<<min_freq<<endl;
+}
 int main()
 {
 
@@ -510,7 +538,9 @@ int main()
     // explainUnorderedSet();
     // explainMap();
     // explainMultiMap();
-    explainUnorderedMap();
+    // explainUnorderedMap();
+
+    solve();
     // LOWER_BOUND and UPPER_BOUND
     // std::vector<int> vec = {1, 4, 5, 7, 9};
 

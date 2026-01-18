@@ -1,1 +1,2 @@
-Not a Palindrome
+Element with max frequency: 1 , frequency: 4
+Element with min frequency: 5 , frequency: 1

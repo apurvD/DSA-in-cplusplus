@@ -142,6 +142,24 @@ void quickSort(vector<int> &arr, int low, int high)
     }
 }
 
+void practicebubblesort(vector<int>& arr)
+{
+    int n = arr.size();
+    bool swapped = false;
+    for(int i = 0; i<n-1; ++i)
+    {
+        for(int j = 0; j< n-i-1; ++j)
+        {
+            if(arr[j+1]<arr[j])
+            {
+                swap(arr[j+1],arr[j]);
+                swapped = true;
+            }
+        }
+        if (swapped ==false)
+            break;
+    }
+}
 int main()
 {
     int n;
