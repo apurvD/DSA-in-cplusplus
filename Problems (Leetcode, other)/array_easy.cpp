@@ -144,14 +144,139 @@ void remove_duplicates(vector<int>&arr)
         cout<<i<<endl;
     }
 }
+
+void left_rotate_1(vector<int>&arr)
+{
+    int temp = arr[0];
+    for(int i =1 ;i<arr.size();++i)
+    {
+        arr[i-1] = arr[i]; 
+    }
+    arr[arr.size()-1] = temp;
+    
+    for(auto i:arr)
+    {
+        cout<<i<<endl;
+    }
+}
+
+ // 6.  rotate array by k places:
+void rotate(vector<int>& nums, int k) 
+{
+        int n = nums.size();
+        // vector<int> temp;
+        // normalize k:
+        k = k%n;
+
+        // // copy elements to temp:
+        // for(int i = (n-k); i < n  ; ++i)
+        // {
+        //     temp.push_back(nums[i]);
+        // }
+        // // copy elements to temp:
+        // for(int i = 0; i < (n-k)  ; ++i)
+        // {
+        //     temp.push_back(nums[i]);
+        // }
+        // for(int i = 0; i< n;++i)
+        // {
+        //     nums[i] = temp[i];
+        // }
+        
+        //right rotate
+        // reverse(nums.begin(), nums.end());
+        // reverse(nums.begin() + k , nums.end());
+        // reverse(nums.begin(), nums.begin()+ k) ;
+        //left rotate
+        reverse(nums.begin() + k , nums.end());
+        reverse(nums.begin(), nums.begin()+ k) ;
+        reverse(nums.begin(), nums.end());
+        for(auto i: nums)
+        {
+            cout<<i<<" ";
+        }
+
+}
+void moveZeroes(vector<int>& nums) {
+        int i = 0;
+        for(int j = 0; j<nums.size();++j)
+        {
+            if(nums[j] != 0)
+            {
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+        while (i<nums.size())
+        {
+            nums[i]=0;
+            ++i;
+        }
+}
+
+
+
+int largest_subarray_sum(vector<int>&arr, int k)
+{
+    int l = 0, r = 0;
+    int sum = 0;
+    int maxlength = 0;
+    while(r < arr.size())
+    {
+        sum += arr[r];
+        while(sum > k && l<=r)
+        {
+            sum-=arr[l];
+            l++;
+        }
+        if(sum == k)
+        {
+            maxlength = max(maxlength , r - l + 1);
+        }
+        r++;
+    }
+    return maxlength;
+}
+int longestSubarraySumK(vector<int>& arr, int k) 
+{ 
+    unordered_map<int, int> firstIndex; 
+    firstIndex[0] = -1; // prefix sum 0 occurs before array starts int sum = 0; 
+    int maxlen = 0, sum=0; 
+    for (int i = 0; i < arr.size(); i++)
+    { 
+        sum += arr[i]; 
+        
+        // Check if we have seen prefix sum (sum - k) 
+        if (firstIndex.count(sum - k)) 
+        { 
+            maxlen = max(maxlen, i - firstIndex[sum - k]); 
+        } 
+        // Store prefix sum only if first time seen 
+        if (!firstIndex.count(sum)) 
+        { 
+            firstIndex[sum] = i; 
+            
+        } 
+        
+    } 
+    return maxlen; 
+}
+
+
 int main()
 {
     vector<int> arr = {2,1,7,4,3,5,6,9};
     vector<int> arr_duplicates = {1,1,1,2,2,3,3,3,3,4,4};
+    vector<int> arr_zeroes = {1 ,0 ,2 ,3 ,0 ,4 ,0 ,1};
+    vector<int> nums = {10, 5, 2, 7, 1, 9};
+    int k = 15;
     //1. findlargest(arr);
     // 2.second_largest(arr);
     // second_smallest(arr);
     //3 . isSorted(arr_sorted);
-    remove_duplicates(arr_duplicates);
+    // remove_duplicates(arr_duplicates);
+    //5.  left_rotate_1(arr);
+    //6.  rotate(arr , 3);
+    cout<<longestSubarraySumK(nums, k);
     return 0;
 }
